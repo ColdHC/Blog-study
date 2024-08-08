@@ -1,6 +1,5 @@
+from django.contrib.auth.models import AbstractUser, BaseUserManager, Group, Permission
 from django.db import models
-from django.contrib.auth.models import  PermissionsMixin, BaseUserManager,AbstractUser
-# Create your models here
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, username, password=None):
@@ -35,6 +34,9 @@ class CustomUser(AbstractUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     
+    groups = models.ManyToManyField(Group, related_name='customuser_set', blank=True)
+    user_permissions = models.ManyToManyField(Permission, related_name='customuser_set', blank=True)
+    
     objects = CustomUserManager()
     
     USERNAME_FIELD = 'email'
@@ -42,9 +44,3 @@ class CustomUser(AbstractUser):
     
     def __str__(self):
         return self.email
-
-    def has_perm(self, perm, obj=None):
-        return self.is_admin
-    
-    def has_module_perms(self, app_label):
-        return True

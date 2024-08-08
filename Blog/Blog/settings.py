@@ -130,3 +130,4 @@ ALLOWED_HOSTS = ['*']
 
 LOGIN_URL = 'login'
 
+CUSTOM_USER_MODEL = 'accounts.CustomUser'

@@ -2,4 +2,18 @@
 
 {% block content %}
     {{ title }}
+    <link rel="stylesheet" type="text/css" href="login.css" />
+    <div class="login">
+        <form action="submit" method="post">
+            <div class="formulario">
+                <label for="username">Usuário:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="senha">
+                <label for="password">Senha:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+            </form>
+    </div>
 {% endblock %}
